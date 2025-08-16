@@ -1,4 +1,6 @@
 const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
 
 const { chats } = require('./data/data.js');
@@ -11,9 +13,12 @@ app.get('/', (req, res) => {
 
 app.get('/api/chat', (req, res) => {
     res.send(chats);
-    res.send("Welcome to the Chat API");
-})
+    // res.send("Welcome to the Chat API");
+    console.log("Chat API accessed");
+});
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
